@@ -191,6 +191,45 @@ section { padding: 100px 60px; }
 .novia-alert p { font-size: 11px; line-height: 1.9; color: var(--text-muted); }
 .novia-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 
+/* ANTES Y DESPUÉS */
+#resultados { background: var(--navy); position: relative; }
+.resultados-header { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(260px,0.65fr); gap: 50px; align-items: end; margin-bottom: 48px; }
+.resultados-intro { font-size: 12px; line-height: 2; color: var(--text-muted); }
+.resultados-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(25px,3vw,34px); font-weight: 400; color: var(--white); margin-bottom: 18px; }
+.resultados-subtitle em { color: var(--rose-light); font-style: italic; }
+.resultado-destacado { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(250px,0.5fr); border: 1px solid rgba(212,160,160,0.2); background: rgba(6,15,30,0.55); margin-bottom: 68px; }
+.resultado-comparacion { display: grid; grid-template-columns: 1fr 1fr; min-height: 410px; }
+.resultado-foto { position: relative; display: flex; align-items: flex-end; min-height: 300px; overflow: hidden; isolation: isolate; background: var(--deep); }
+.resultado-foto img, .resultado-card-foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.resultado-foto::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(0deg, rgba(3,8,16,0.82), transparent 48%); }
+.resultado-foto.despues { border-left: 1px solid rgba(212,160,160,0.25); background: linear-gradient(145deg, rgba(212,160,160,0.2), rgba(17,34,64,0.95)); }
+.resultado-foto-label { position: absolute; left: 22px; bottom: 22px; z-index: 2; display: inline-flex; align-items: center; gap: 8px; padding: 8px 11px; border: 1px solid rgba(255,255,255,0.18); background: rgba(6,15,30,0.78); color: var(--cream); font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.resultado-foto-label::before { content: ''; width: 6px; height: 6px; background: var(--rose); border-radius: 50%; }
+.resultado-destacado-info { display: flex; flex-direction: column; justify-content: space-between; gap: 30px; padding: 34px 30px; border-left: 1px solid rgba(212,160,160,0.18); }
+.resultado-destacado-title { font-family: 'Cormorant Garamond', serif; font-size: 29px; font-weight: 500; color: var(--white); line-height: 1.15; margin-bottom: 18px; }
+.resultado-destacado-text { font-size: 11px; line-height: 1.9; color: var(--text-muted); }
+.resultado-pendiente { padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 9px; line-height: 1.7; letter-spacing: 1px; color: var(--rose-light); }
+.resultados-otros-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 26px; }
+.resultados-otros-copy { max-width: 470px; font-size: 11px; line-height: 1.9; color: var(--text-muted); }
+.resultados-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.resultado-card { border: 1px solid rgba(201,168,76,0.13); background: rgba(255,255,255,0.02); overflow: hidden; }
+.resultado-card-visual { display: grid; grid-template-columns: 1fr 1fr; aspect-ratio: 2.25 / 1; min-height: 0; }
+.resultado-card-foto { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(122,184,212,0.1), rgba(6,15,30,0.95)); }
+.resultado-card-foto::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(3,8,16,0.58), transparent 38%); }
+.resultado-card-foto + .resultado-card-foto { border-left: 1px solid rgba(201,168,76,0.18); background: linear-gradient(145deg, rgba(201,168,76,0.14), rgba(17,34,64,0.95)); }
+.resultado-card-foto span { position: absolute; z-index: 2; top: 12px; left: 12px; padding: 6px 8px; background: rgba(6,15,30,0.72); font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cream); }
+.resultado-card-body { padding: 18px; }
+.resultado-card-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--white); margin-bottom: 5px; }
+.resultados-more { margin-top: 18px; }
+.resultados-more summary { width: max-content; max-width: 100%; list-style: none; padding: 13px 30px; border: 1px solid rgba(201,168,76,0.4); color: var(--cream); font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+.resultados-more summary::-webkit-details-marker { display: none; }
+.resultados-more summary::after { content: ' +'; color: var(--gold-light); }
+.resultados-more[open] summary { margin-bottom: 18px; border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.resultados-more[open] summary::after { content: ' −'; }
+.resultados-more .resultados-grid { animation: resultadosReveal 0.35s ease; }
+@keyframes resultadosReveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.resultados-note { margin-top: 22px; font-size: 10px; line-height: 1.8; color: var(--text-muted); }
+
 /* PRECIOS */
 #precios { background: var(--navy); position: relative; }
 .precios-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
@@ -303,8 +342,10 @@ footer { padding: 36px 60px; background: var(--deep); border-top: 1px solid rgba
   .nav-mobile { display: flex; }
   section { padding: 70px 24px; }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .novia-layout, .precios-layout, .nosotros-layout, .contacto-layout { grid-template-columns: 1fr; gap: 40px; }
+  .novia-layout, .precios-layout, .nosotros-layout, .contacto-layout, .resultados-header, .resultado-destacado { grid-template-columns: 1fr; gap: 40px; }
   .novia-visual { position: static; }
+  .resultado-destacado-info { border-left: none; border-top: 1px solid rgba(212,160,160,0.18); }
+  .resultados-grid { grid-template-columns: 1fr 1fr; }
   .precios-scroll-container { max-height: 480px; }
   .reviews-grid { grid-template-columns: 1fr 1fr; }
   footer { flex-direction: column; text-align: center; align-items: center; }
@@ -325,6 +366,15 @@ footer { padding: 36px 60px; background: var(--deep); border-top: 1px solid rgba
   footer { padding: 28px 18px; }
   .reviews-score-block { gap: 14px; }
   .reviews-big-score { font-size: 52px; }
+  .resultado-comparacion { grid-template-columns: 1fr; min-height: 0; }
+  .resultado-foto { min-height: 0; aspect-ratio: 1.125 / 1; }
+  .resultado-foto.despues { border-left: none; border-top: 1px solid rgba(212,160,160,0.25); }
+  .resultado-foto-label { left: 12px; bottom: 12px; padding: 7px; font-size: 7px; letter-spacing: 1px; }
+  .resultados-otros-head { display: block; }
+  .resultados-otros-copy { margin-top: 12px; }
+  .resultados-grid { grid-template-columns: 1fr; }
+  .resultado-card-visual { min-height: 0; }
+  .resultados-more summary { width: 100%; text-align: center; }
 }
 </style>
 </head>
@@ -421,7 +471,7 @@ footer { padding: 36px 60px; background: var(--deep); border-top: 1px solid rgba
       </div>
       <div class="novia-cta-row">
         <a href="https://wa.me/541549499519?text=Hola!%20Quiero%20consultar%20por%20limpieza%20de%20vestido%20de%20novia" target="_blank" rel="noopener noreferrer" class="btn-rose">Consultar por WhatsApp</a>
-        <a href="#contacto" class="btn-rose-outline">Más información</a>
+        <a href="#resultados" class="btn-rose-outline">Ver antes y después</a>
       </div>
     </div>
   </div>
@@ -629,6 +679,120 @@ footer { padding: 36px 60px; background: var(--deep); border-top: 1px solid rgba
         <div class="value-item"><div class="value-dot"></div><div><div class="value-title">Experiencia</div><div class="value-desc">Más de 20 años en el rubro nos avalan. Conocemos cada tela, cada tejido, cada necesidad.</div></div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="resultados">
+  <div class="section-top-border"></div>
+  <div class="resultados-header reveal">
+    <div>
+      <span class="section-label">Trabajos realizados</span>
+      <h2 class="section-title">Antes y después de nuestro <em>cuidado profesional</em></h2>
+      <div class="section-divider"><div class="divider-line"></div><div class="divider-dot"></div></div>
+    </div>
+    <p class="resultados-intro">Conocé casos reales de prendas y textiles tratados en DEL RIO. Cada comparación muestra el estado de la pieza antes y después de nuestro trabajo.</p>
+  </div>
+
+  <div class="reveal">
+    <span class="section-label" style="color:var(--rose);">Vestidos y prendas delicadas</span>
+    <h3 class="resultados-subtitle">Cuidado especializado para prendas <em>únicas</em></h3>
+    <article class="resultado-destacado">
+      <div class="resultado-comparacion" aria-label="Comparación del vestido antes y después de la limpieza">
+        <div class="resultado-foto"><img src="images/antes-despues/vestido-1-sucio.webp" alt="Vestido violeta con manchas antes de la limpieza profesional" width="899" height="799" loading="lazy" decoding="async"><span class="resultado-foto-label">Antes</span></div>
+        <div class="resultado-foto despues"><img src="images/antes-despues/vestido-1-limpio.webp" alt="Vestido violeta limpio después del tratamiento profesional" width="899" height="800" loading="lazy" decoding="async"><span class="resultado-foto-label">Después</span></div>
+      </div>
+      <div class="resultado-destacado-info">
+        <div>
+          <h3 class="resultado-destacado-title">Vestido de fiesta</h3>
+          <p class="resultado-destacado-text">Limpieza especializada para recuperar el color y el brillo de una prenda delicada, respetando la tela y sus terminaciones.</p>
+        </div>
+        <p class="resultado-pendiente">Resultado real del trabajo realizado en DEL RIO.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="reveal">
+    <div class="resultados-otros-head">
+      <div>
+        <span class="section-label">Más transformaciones</span>
+        <h3 class="resultados-subtitle">Resultados en otras prendas</h3>
+      </div>
+      <p class="resultados-otros-copy">Prendas de uso diario, camperas y textiles del hogar tratados con el cuidado específico que necesita cada material.</p>
+    </div>
+
+    <div class="resultados-grid">
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/camisa-1-sucio.webp" alt="Camisa blanca manchada antes de la limpieza" width="900" height="800" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/camisa-1-limpio.webp" alt="Camisa blanca limpia después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Camisa blanca</h4></div>
+      </article>
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/campera-2-sucio.webp" alt="Campera azul antes de la limpieza" width="720" height="640" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/campera-2-limpio.webp" alt="Campera azul limpia después del tratamiento" width="720" height="640" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Campera inflable</h4></div>
+      </article>
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-2-sucio.webp" alt="Acolchado con manchas antes de la limpieza" width="900" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-2-limpio.webp" alt="Acolchado limpio después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Acolchado</h4></div>
+      </article>
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/saco-1-sucio.webp" alt="Saco gris con polvo antes de la limpieza" width="900" height="800" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/saco-1-limpio.webp" alt="Saco gris limpio después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Saco</h4></div>
+      </article>
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/mantel-sucio.webp" alt="Mantel bordado manchado antes de la limpieza" width="900" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/mantel-limpio.webp" alt="Mantel bordado limpio después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Mantel bordado</h4></div>
+      </article>
+      <article class="resultado-card">
+        <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/ropa-deportiva-2-sucio.webp" alt="Indumentaria deportiva con barro antes de la limpieza" width="899" height="798" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/ropa-deportiva-2-limpio.webp" alt="Indumentaria deportiva limpia después del tratamiento" width="899" height="799" loading="lazy" decoding="async"><span>Después</span></div></div>
+        <div class="resultado-card-body"><h4 class="resultado-card-title">Ropa deportiva</h4></div>
+      </article>
+    </div>
+
+    <details class="resultados-more">
+      <summary>Ver más ejemplos</summary>
+      <div class="resultados-grid">
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/tapado-1-sucio.webp" alt="Tapado claro manchado antes de la limpieza" width="900" height="800" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/tapado-1-limpio.webp" alt="Tapado claro limpio después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Tapado</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/remera-1-sucio.webp" alt="Remera blanca con manchas antes de la limpieza" width="900" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/remera-1-limpio.webp" alt="Remera blanca limpia después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Remera estampada</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/sabana-1-sucio.webp" alt="Ropa de cama con moho antes de la limpieza" width="900" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/sabana-1-limpio.webp" alt="Ropa de cama limpia después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Ropa de cama</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-1-sucio.webp" alt="Acolchado estampado antes de la limpieza" width="720" height="640" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-1-limpio.webp" alt="Acolchado estampado limpio después del tratamiento" width="720" height="640" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Acolchado estampado</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-plumas-sucio.webp" alt="Acolchado de plumas manchado antes de la limpieza" width="900" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/acolchado-plumas-limpio.webp" alt="Acolchado de plumas limpio después del tratamiento" width="900" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Acolchado de plumas</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/campera-1-sucio.webp" alt="Campera de punto antes de la limpieza" width="720" height="640" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/campera-1-limpio.webp" alt="Campera de punto limpia después del tratamiento" width="720" height="640" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Campera de punto</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/campera-3-sucio.webp" alt="Campera gris manchada antes de la limpieza" width="720" height="640" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/campera-3-limpio.webp" alt="Campera gris limpia después del tratamiento" width="720" height="640" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Campera gris</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/campera-4-sucio.webp" alt="Campera naranja antes de la limpieza" width="899" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/campera-4-limpio.webp" alt="Campera naranja limpia después del tratamiento" width="899" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Campera naranja</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/campera-5-sucio.webp" alt="Campera azul combinada antes de la limpieza" width="899" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/campera-5-limpio.webp" alt="Campera azul combinada limpia después del tratamiento" width="899" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Campera combinada</h4></div>
+        </article>
+        <article class="resultado-card">
+          <div class="resultado-card-visual"><div class="resultado-card-foto"><img src="images/antes-despues/ropa-deportiva-1-sucio.webp" alt="Conjunto deportivo con barro antes de la limpieza" width="899" height="799" loading="lazy" decoding="async"><span>Antes</span></div><div class="resultado-card-foto"><img src="images/antes-despues/ropa-deportiva-1-limpio.webp" alt="Conjunto deportivo limpio después del tratamiento" width="899" height="800" loading="lazy" decoding="async"><span>Después</span></div></div>
+          <div class="resultado-card-body"><h4 class="resultado-card-title">Conjunto deportivo</h4></div>
+        </article>
+      </div>
+    </details>
+    <p class="resultados-note">Cada resultado depende del tipo de tela, el estado de la prenda y la antigüedad de las manchas.</p>
   </div>
 </section>
 
